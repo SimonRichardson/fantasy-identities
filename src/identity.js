@@ -32,6 +32,16 @@ Identity.prototype.traverse = function(f, p) {
     return p.of(f(this.x));
 };
 
+Identity.prototype.extract = function() {
+    return this.x;
+};
+
+Identity.prototype.extend = function(f) {
+    return this.map(function(x) {
+        return f(Identity.of(x));
+    });
+};
+
 // Transformer
 Identity.IdentityT = function(M) {
     var IdentityT = daggy.tagged('run');
